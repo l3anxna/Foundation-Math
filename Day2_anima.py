@@ -1,10 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 
 def f(x):
     return (x**2) - 5 
 
 start, end, tol = -3, 2, 1e-10
+
 
 def bisection_with_tracking(start, end, tol):
     approximations = []
@@ -31,7 +33,15 @@ y = f(x)
 fig, ax = plt.subplots()
 ax.plot(x, y, label="f(x)")
 ax.axhline(0, color="black", linewidth=0.8)
-ax.plot(approximations, [0] * len(approximations), "ro", markersize=5, label="Approximations")
+approx_dots, = ax.plot([], [], "ro", markersize=5, label="Approximations")
+
+def update(i):
+    approx_dots.set_data(approximations[:i+1], [0] * (i+1))
+    return approx_dots,
+
+ani = animation.FuncAnimation(fig, update, frames=len(approximations), interval=500, repeat=False)
 
 plt.legend()
 plt.show()
+
+ani.save("bisection_convergence.mp4", writer="ffmpeg")
