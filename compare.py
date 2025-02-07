@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 
-
 def f(x):
     return x**2 - 4
 
