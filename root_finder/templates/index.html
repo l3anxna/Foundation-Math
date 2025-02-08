@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Root Finder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Root Finding Methods Comparison</h1>
+        <form method="POST" action="/">
+            <div class="mb-3">
+                <label class="form-label">Function (use x as variable):</label>
+                <input type="text" class="form-control" name="function"
+                       placeholder="x**2 - 5*sin(x) + x - 1" required>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <label class="form-label">Interval start (a):</label>
+                    <input type="number" class="form-control" name="a" step="any" required>
+                </div>
+                <div class="col">
+                    <label class="form-label">Interval end (b):</label>
+                    <input type="number" class="form-control" name="b" step="any" required>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Tolerance:</label>
+                <input type="number" class="form-control" name="tolerance"
+                       value="0.000001" step="any" min="1e-12" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Calculate</button>
+        </form>
+    </div>
+</body>
+</html>
