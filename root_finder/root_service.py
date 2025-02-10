@@ -52,13 +52,11 @@ def newton_method(f, df, x0, tol, max_iter=100):
 def index():
     if request.method == 'POST':
         try:
-            # Parse form data
             func_str = request.form['function']
             a = float(request.form['a'])
             b = float(request.form['b'])
             tol = float(request.form['tolerance'])
 
-            # Set up symbolic computation
             x = sp.symbols('x')
             try:
                 f_expr = sp.parse_expr(func_str)
@@ -68,11 +66,9 @@ def index():
             f = sp.lambdify(x, f_expr, 'numpy')
             df = sp.lambdify(x, sp.diff(f_expr, x), 'numpy')
 
-            # Run algorithms
             root_bisect, iter_bisect, (bisect_vals, bisect_errors) = bisection_method(f, a, b, tol)
             root_newton, iter_newton, (newton_vals, newton_errors) = newton_method(f, df, (a+b)/2, tol)
-
-            # Generate convergence plots
+            
             plt.figure()
             plt.semilogy(bisect_errors, label='Bisection')
             plt.semilogy(newton_errors, label='Newton')
