@@ -62,9 +62,8 @@ for i, contour in enumerate(contours):
     degree = min(desired_degree, n_points - 1)
 
     # Fit polynomials for x(t) and y(t)
-    coeffs_x = np.polyfit(t, x_vals, deg=degree)
-    coeffs_y = np.polyfit(t, y_vals, deg=degree)
-
+    coeffs_x = np.genfromtxt("/Users/arm/Vscode/HS_work/Foundation math/Foundation-Math/x_value.csv")
+    coeffs_y = np.genfromtxt("/Users/arm/Vscode/HS_work/Foundation math/Foundation-Math/y_value.csv")
     # Evaluate the polynomials on a finer grid for smooth plotting.
     t_new = np.linspace(0, n_points - 1, 300)
     x_poly = np.polyval(coeffs_x, t_new)
