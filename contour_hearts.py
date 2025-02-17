@@ -2,7 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from skimage import measure
 from skimage import io, color, filters
-from scipy.interpolate import splprep, splev
 
 image = io.imread(
     "/Users/arm/Downloads/manyhearts.jpeg"

@@ -4,7 +4,6 @@ from scipy.interpolate import interp1d
 
 
 def solve_sle_interpolation(x, y):
-    n = len(x)
     V = np.vander(x, increasing=True)
     try:
         coeffs = np.linalg.solve(V, y)
