@@ -23,21 +23,11 @@ def trilaterate(anchors, distances):
     solution, residuals, rank, s = np.linalg.lstsq(A, b, rcond=None)
     return solution
 
-def compute_distances(anchors, true_point, noise_std=0):
-    distances = []
-    for anchor in anchors:
-        dist = np.sqrt(np.sum((anchor - true_point)**2))
-        if noise_std > 0:
-            dist += np.random.normal(0, noise_std)
-        distances.append(dist)
-    return np.array(distances)
-
-def visualize_trilateration(anchors, true_point, estimated_point, distances):
+def visualize_trilateration(anchors, estimated_point, distances):
     plt.figure(figsize=(10, 8))
     
     plt.scatter(anchors[:, 0], anchors[:, 1], color='blue', marker='^', s=100, label='Anchors')
     
-    plt.scatter(true_point[0], true_point[1], color='green', marker='o', s=100, label='True position')
     plt.scatter(estimated_point[0], estimated_point[1], color='red', marker='x', s=100, label='Estimated position')
     
     ax = plt.gca()
@@ -45,11 +35,7 @@ def visualize_trilateration(anchors, true_point, estimated_point, distances):
         circle = Circle(anchor, distances[i], fill=False, color='gray', alpha=0.3)
         ax.add_patch(circle)
     
-    for anchor in anchors:
-        plt.plot([estimated_point[0], anchor[0]], [estimated_point[1], anchor[1]], 'k--', alpha=0.3)
-    
-    error = np.sqrt(np.sum((true_point - estimated_point)**2))
-    plt.title(f'2D Trilateration\nEstimation Error: {error:.4f}')
+    plt.title('Trilateration Visualization')
     
     plt.grid(True)
     plt.legend()
@@ -90,3 +76,4 @@ if __name__ == "__main__":
     
     print(f"Estimated position: {estimated_position}")
 
+    visualize_trilateration(coordinates, estimated_position, distances)
