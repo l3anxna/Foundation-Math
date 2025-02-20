@@ -59,6 +59,28 @@ input[type="file"] {
     cursor: pointer;
 }
 
+.button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 15px 24px;
+    background: linear-gradient(135deg, #685DC5 0%, #3E377A 100%);
+    color: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: 'Segoe UI', system-ui;
+    font-size: 1.1rem;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.button:hover {
+    background: var(--primary-hover);
+    transform: scale(1.05);
+}
+
 button {
     display: inline-flex;
     align-items: center;
@@ -80,8 +102,8 @@ button:hover {
     background: var(--primary-hover);
     transform: scale(1.05);
 }
-  
-    .visually-hidden {
+
+.visually-hidden {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -90,7 +112,7 @@ button:hover {
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
     border: 0;
-    }
+}
   
 @media (max-width: 768px) {
     .image-box {
