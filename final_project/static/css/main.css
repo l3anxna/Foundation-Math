@@ -1,0 +1,103 @@
+:root {
+    --primary: #938AE5;
+    --primary-hover: #938AE5;
+    --background: #E1DFF3;
+    --text-primary: #333333;
+    --text-secondary: #535353;
+    --font-primary: 'Inter', system-ui, sans-serif;
+    --font-secondary: 'Space Mono', monospace;
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    background-color: var(--background);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.image-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.image-box {
+    max-width: 600px;      
+    margin: 0 auto;          
+    overflow: hidden;   
+    position: relative;
+}
+
+.image-box img {
+    width: 100%;           
+    height: auto;          
+    max-height: 70vh;       
+    object-fit: contain;    
+    display: block;       
+    margin: 0 auto;         
+}
+
+.image-box:hover {
+    transform: translateY(-5px);
+}
+
+input[type="file"] {
+    padding: 1rem;
+    border: 2px dashed var(--primary);
+    border-radius: 8px;
+    width: 100%;
+    margin: 1rem 0;
+    cursor: pointer;
+}
+
+button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 15px 24px;
+    background: linear-gradient(135deg, #685DC5 0%, #3E377A 100%);
+    color: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: 'Segoe UI', system-ui;
+    font-size: 1.1rem;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover {
+    background: var(--primary-hover);
+    transform: scale(1.05);
+}
+  
+    .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+    }
+  
+@media (max-width: 768px) {
+    .image-box {
+        max-width: 95vw;
+    }
+    
+    .image-box img {
+        max-height: 60vh;
+    }
+}

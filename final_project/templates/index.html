@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Filter App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/filters.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Image Filter Studio</h1>
+            <p class="subtitle">Transform your images with AI-powered filters</p>
+        </header>
+
+        <form method="POST" enctype="multipart/form-data">
+            <div class="upload-container">
+                <input type="file" id="file-input" class="visually-hidden" accept="image/*" required>
+                    <button type="submit">📸 Select Image</button>
+                <div class="image-preview" aria-live="polite"></div>
+              </div>
+
+            <section class="results">
+                <div class="results-container">
+                    {% if original and result %}
+                    <section class="results">
+                        <div class="image-container">
+                            <div class="image-box">
+                                <h3>Original Image</h3>
+                                <div class="image-wrapper">
+                                    <img src="{{ url_for('send_uploaded_file', filename=original) }}">
+                                </div>
+                            </div>
+                            <div class="image-box">
+                                <h3>Filtered Image ({{ filter_used|title }})</h3>
+                                <div class="image-wrapper">
+                                    <img src="{{ url_for('send_result_file', filename=result) }}">
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    {% endif %}
+                </div>
+            </section>
+
+            <h2 class="filter-heading">🎨 Choose Your Filter</h2>
+            <div class="filters">
+                {% for filter in ['original', 'grayscale', 'sepia', 'invert', 'warm', 'cool', 'enhance', 'pencil_sketch'] %}
+                    <label>
+                        <input type="radio" name="filter" value="{{ filter }}" 
+                            {% if filter_used == filter %}checked{% endif %}>
+                        <div class="filter-option">{{ filter|title }}</div>
+                    </label>
+                {% endfor %}
+            </div>
+
+            <button type="submit">🚀 Apply Filter</button>
+            
+            {% if error %}
+                <div class="error">{{ error }}</div>
+            {% endif %}
+        </form>
+
+        {% if original and result %}
+        {% endif %}
+    </div>
+
+    <script src="{{ url_for('static', filename='js/interactions.js') }}"></script>
+</body>
+</html>
